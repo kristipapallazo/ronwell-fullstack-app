@@ -39,7 +39,7 @@ const BtnContainer = () => {
       setLoading(true);
       console.log("loading inside :>> ", loading);
       const url = `${apiUrl}/${id}`;
-      const res: Promise<Response> = await fetch(url).then((res) => res.json());
+      const res = await fetch(url);
       console.log("res :>> ", res);
       /* check for res.ok */
       if (!res) throw new Error("Error during creating an item");

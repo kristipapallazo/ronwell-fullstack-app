@@ -25,13 +25,7 @@ const BTN_ARR: BtnItem[] = [
     label: "delete",
   },
 ];
-const apiUrl = "https://localhost:8080";
 
-interface ServerResponse {
-  error?: boolean;
-  message?: string;
-  data?: unknown;
-}
 const BtnContainer = () => {
   const [loading, setLoading] = useState(false);
   const handleCreate = async (id: string) => {

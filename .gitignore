@@ -89,5 +89,5 @@ Thumbs.db
 *.sln
 *.sw?
 
-config/*.json
+**/config/*.json
 # Don't ignore default.json

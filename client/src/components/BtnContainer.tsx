@@ -1,6 +1,5 @@
 import { useState } from "react";
 import classes from "./BtnContainer.module.css";
-
 interface BtnItem {
   id: string;
   label: string;

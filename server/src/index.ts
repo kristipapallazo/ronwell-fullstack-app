@@ -5,7 +5,7 @@ import config from "config";
 import productRoutes from "./routes/index";
 import { AppDataSource } from "./data-source";
 
-const port: number = config.get("Server.port") || 8080;
+const port: number = config.get("port") || 8080;
 
 const app = express();
 

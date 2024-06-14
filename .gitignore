@@ -90,4 +90,6 @@ Thumbs.db
 *.sw?
 
 **/config/*.json
+server/config/test.json
+client/config/*.json
 # Don't ignore default.json

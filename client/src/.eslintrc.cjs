@@ -15,5 +15,9 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "@typescript-eslint/no-unused-vars": ["warn"],
+    "react-refresh/only-export-components": [
+      "warn",
+      { allowExportNames: ["loader", "action"] },
+    ],
   },
 };

@@ -1,12 +1,17 @@
 import { NavLink, useRouteLoaderData } from "react-router-dom";
-import classes from "./EventsNavigation.module.css";
+import classes from "./ProductsNavigation.module.css";
 import { FC } from "react";
 
 const INITIAL = [
-  { id: "events", title: "All events", path: "/events" },
-  { id: "new_event", title: "New event", path: "/events/new", hasAuth: true },
+  { id: "products", title: "All products", path: "/products" },
+  {
+    id: "new_product",
+    title: "New product",
+    path: "/products/new",
+    hasAuth: true,
+  },
 ];
-const EventsNavigation: FC = () => {
+const ProductsNavigation: FC = () => {
   const token = useRouteLoaderData("root");
 
   const filteredItems = !token
@@ -32,4 +37,4 @@ const EventsNavigation: FC = () => {
   );
 };
 
-export default EventsNavigation;
+export default ProductsNavigation;

@@ -5,8 +5,21 @@ import config from "config";
 import { DbConfig } from "./types";
 
 const dbConfig: DbConfig = config.get("Db");
-
 console.log("dbConfig :>> ", dbConfig);
+
+if (
+  !dbConfig ||
+  !dbConfig.host ||
+  !dbConfig.port ||
+  !dbConfig.username ||
+  !dbConfig.database ||
+  !dbConfig.password
+) {
+  console.log(
+    "dbConfig not found or not configured properly! Check default.json file."
+  );
+  process.exit(1);
+}
 
 export const AppDataSource = new DataSource({
   ...dbConfig,

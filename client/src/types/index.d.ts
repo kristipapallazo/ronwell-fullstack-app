@@ -16,3 +16,14 @@ type Product = {
 type Products = Product[];
 
 type Token = string | undefined | null;
+
+interface InputItem {
+  id: string;
+  label: string;
+  type?: string;
+  required?: boolean;
+}
+
+interface ErrorsData {
+  [key: string]: string;
+}

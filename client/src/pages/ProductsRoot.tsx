@@ -1,12 +1,12 @@
-import EventsNavigation from "../components/EventsNavigation.tsx";
+import ProductsNavigation from "../components/ProductsNavigation.tsx";
 import { Outlet } from "react-router-dom";
-import classes from "./EventsRoot.module.css";
+import classes from "./ProductsRoot.module.css";
 import { FC } from "react";
 
-const EventsRoot: FC = () => {
+const ProductsRoot: FC = () => {
   return (
     <div className={classes.cont}>
-      <EventsNavigation />
+      <ProductsNavigation />
       <main className={classes.outlet}>
         <Outlet />
       </main>
@@ -14,4 +14,4 @@ const EventsRoot: FC = () => {
   );
 };
 
-export default EventsRoot;
+export default ProductsRoot;

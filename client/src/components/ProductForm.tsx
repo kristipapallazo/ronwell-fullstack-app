@@ -4,44 +4,50 @@ import {
   Form,
   useNavigation,
   useActionData,
-  FetcherFormProps,
+  ActionFunction,
 } from "react-router-dom";
 import { sendData } from "../utils/async-req";
-import classes from "./EventForm.module.css";
+import classes from "./ProductForm.module.css";
 import FormItem from "./UI/Input/FormItem";
 import ErrorLabel from "./UI/Error/ErrorLabels";
 import { getToken } from "../utils/auth";
 
 const FORM_ITEMS = [
   {
-    id: "title",
-    label: "Title",
-  },
-  {
-    id: "image",
-    label: "Image",
-    type: "url",
-  },
-  {
-    id: "date",
-    label: "Date",
-    type: "date",
+    id: "name",
+    label: "Name",
   },
   {
     id: "description",
     label: "Description",
     type: "textarea",
   },
+  {
+    id: "inventory",
+    label: "Inventory",
+    type: "number",
+  },
+  {
+    id: "price",
+    label: "Price",
+    type: "number",
+  },
 ];
 
-interface EventFormProps {
+interface ProductFormProps {
   method: string;
+  product?: Product;
 }
-const EventForm: FC<EventFormProps> = ({ method, event }) => {
+
+interface Data {
+  errors: ErrorsData;
+  message?: string;
+}
+const ProductForm: FC<ProductFormProps> = ({ method, product }) => {
   const navigation = useNavigation();
   const navigate = useNavigate();
 
-  const data = useActionData();
+  const data = useActionData() as Data;
 
   const errors = useMemo(() => data?.errors, [data]);
 
@@ -54,7 +60,8 @@ const EventForm: FC<EventFormProps> = ({ method, event }) => {
 
   const items = FORM_ITEMS.map((item) => {
     const { id } = item;
-    const defaultValue = id === "image" ? URL : event?.[id] || "";
+    const defaultValue = product?.[id] || "";
+    // const defaultValue = "";
     const error = errors?.[id];
     return (
       <FormItem
@@ -87,9 +94,9 @@ const EventForm: FC<EventFormProps> = ({ method, event }) => {
   );
 };
 
-export default EventForm;
+export default ProductForm;
 
-export const actionHandler = async ({ request, params }) => {
+export const action: ActionFunction = async ({ request, params }) => {
   const data = await request.formData();
 
   const body = {

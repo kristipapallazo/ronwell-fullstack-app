@@ -11,6 +11,7 @@ export class ProductController {
 
   static getOneById = async (req: Request, res: Response) => {
     const { id } = req.params;
+    console.log("id :>> ", id);
     const productRepository = AppDataSource.getRepository(Product);
     try {
       const product = await productRepository.findOneOrFail({

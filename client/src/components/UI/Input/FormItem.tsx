@@ -1,18 +1,10 @@
 import { FC } from "react";
 import classes from "./FormItem.module.css";
 
-interface Item {
-  id: string;
-  name: string;
-  label: string;
-  required: boolean;
-  type?: string;
-}
 interface FormItemProps {
+  item: InputItem;
   defaultValue?: string;
-  item: Item;
-  error: object;
-  required?: boolean;
+  error?: string;
 }
 
 const FormItem: FC<FormItemProps> = ({
@@ -20,7 +12,7 @@ const FormItem: FC<FormItemProps> = ({
   defaultValue = undefined,
   error,
 }) => {
-  const { id, name, label, type = "text", required = false } = item;
+  const { id, label, type = "text", required = true } = item;
   return (
     <p className={classes.section}>
       <label htmlFor={id}>{label}</label>
@@ -28,7 +20,7 @@ const FormItem: FC<FormItemProps> = ({
         <input
           id={id}
           type={type}
-          name={name || id}
+          name={id}
           required={required}
           defaultValue={defaultValue}
           className={error ? classes.invalidInput : ""}
@@ -36,7 +28,7 @@ const FormItem: FC<FormItemProps> = ({
       ) : (
         <textarea
           id={id}
-          name={name || id}
+          name={id}
           rows={5}
           required={required}
           defaultValue={defaultValue}

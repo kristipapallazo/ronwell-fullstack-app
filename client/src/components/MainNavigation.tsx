@@ -1,7 +1,7 @@
 import { Form, NavLink, useRouteLoaderData, useSubmit } from "react-router-dom";
 import { useEffect } from "react";
-// import { getTokenDuration } from "../utils/auth";
 import classes from "./MainNavigation.module.css";
+import { getTokenDuration } from "../utils/auth";
 
 type Item = {
   id: string;
@@ -15,20 +15,20 @@ type Items = Item[];
 const INITIAL: Items = [
   { id: "home", title: "Home", path: "/", end: true },
   { id: "products", title: "Products", path: "/products" },
-  // { id: "auth", title: "Auth", path: "/auth", notAuth: true },
+  { id: "auth", title: "Auth", path: "/auth", notAuth: true },
 ];
 function MainNavigation() {
-  const token = useRouteLoaderData("root");
+  const token = useRouteLoaderData("root") as Token;
   const submit = useSubmit();
 
-  // useEffect(() => {
-  //   if (!token) return;
-  //   const tokenDuration = getTokenDuration();
-  //   console.log("tokenDuration :>> ", tokenDuration);
-  //   setTimeout(() => {
-  //     submit(null, { method: "post", action: "/logout" });
-  //   }, tokenDuration);
-  // }, [token, submit]);
+  useEffect(() => {
+    if (!token) return;
+    const tokenDuration = getTokenDuration();
+    console.log("tokenDuration :>> ", tokenDuration);
+    setTimeout(() => {
+      submit(null, { method: "post", action: "/logout" });
+    }, tokenDuration);
+  }, [token, submit]);
 
   const filteredItems = token
     ? INITIAL.filter(({ notAuth }: Item) => !notAuth)
@@ -50,13 +50,13 @@ function MainNavigation() {
       <nav>
         <ul className={classes.list}>
           {items}
-          {/* {token && (
+          {token && (
             <li>
               <Form method="post" action="/logout">
                 <button>Logout</button>
               </Form>
             </li>
-          )} */}
+          )}
         </ul>
       </nav>
     </header>

@@ -1,50 +1,47 @@
-import { json, redirect } from "react-router-dom";
+import { redirect /* json */ } from "react-router-dom";
 import { config } from "../globals/index";
 
 const { apiUrl } = config;
 
 export const fetchData = async (
   route = "/",
-  header = {},
-  message = "Failed to fetch events."
+  header: RequestInit = {},
+  message = "Failed to fetch products."
 ) => {
-  const response = await fetch(apiUrl + route, header);
+  const res: Response = await fetch(apiUrl + route, header);
+  console.log("res :>> ", res);
 
-  if (!response.ok) {
-    throw new Response(
-      json(
-        { message },
-        { status: response.status, statusText: response.statusText }
-      )
-    );
+  if (!res.ok) {
     // throw new Response(
-    //   JSON.stringify({ message: "Failed to fetch events" }, { status: 500 })
+    //   json(
+    //     { message },
+    //     { status: response.status, statusText: response.statusText }
+    //   )
     // );
+    throw new Response(JSON.stringify({ message, status: 500 }));
   }
-  const resData = await response.json();
+  const resData = await res.json();
+  console.log("resData :>> ", resData);
   return resData;
 };
 export const sendData = async (
   route = "/",
-  header: unknown,
-  msg: string,
+  header: RequestInit,
+  message: string = "Failed to send products.",
   redirectRoute?: string
 ) => {
   const finalHeader = header || {};
-  const message = msg || "Failed to fetch events.";
   const response = await fetch(apiUrl + route, finalHeader);
 
   if (response.status === 422 || response.status === 401) return response;
   if (!response.ok) {
-    throw new Response(
-      json(
-        { message },
-        { status: response.status, statusText: response.statusText }
-      )
-    );
     // throw new Response(
-    //   JSON.stringify({ message: "Failed to fetch events" }, { status: 500 })
+    //   json(
+    //     { message },
+    //     { status: response.status, statusText: response.statusText }
+    //   )
     // );
+    throw new Response(JSON.stringify({ message, status: 500 }));
   }
   const data = await response.json();
   if (data?.token) {

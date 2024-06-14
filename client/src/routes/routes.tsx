@@ -1,18 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage.tsx";
-import EventsPage, {
-  loader as EventsLoader,
-} from "../pages/EventDetailPage.tsx";
-import EventDetailPage, {
-  loader as EventDetailLoader,
-  action as EventDetailAction,
-} from "../pages/EventDetailPage.tsx";
-import EditEventPage from "../pages/EditEventPage.tsx";
-import NewEventPage from "../pages/NewEventPage.tsx";
-import EventsRoot from "../pages/EventsRoot.tsx";
-import { actionHandler as FormActionHandler } from "../components/EventForm.tsx";
-// import AuthenticationPage from "../pages/AuthenticationPage";
-// import { action as AuthAction } from "../components/AuthForm.tsx";
+import ProductsPage, {
+  loader as ProductsLoader,
+} from "../pages/ProductsPage.tsx";
+import ProductDetailPage, {
+  loader as ProductDetailLoader,
+  action as ProductDetailAction,
+} from "../pages/ProductDetailPage.tsx";
+import EditProductPage from "../pages/EditProductPage.tsx";
+import NewProductPage from "../pages/NewProductPage.tsx";
+import ProductsRoot from "../pages/ProductsRoot.tsx";
+import { action as FormActionHandler } from "../components/ProductForm.tsx";
+import AuthenticationPage from "../pages/AuthenticationPage.tsx";
+import { action as AuthAction } from "../components/AuthForm.tsx";
 import { action as LogoutAction } from "../pages/LogoutPage.tsx";
 import { checkAuthLoader, tokenLoader } from "../utils/auth.ts";
 import MainPage from "../pages/MainPage";
@@ -27,27 +27,27 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       {
-        path: "events",
-        element: <EventsRoot />,
+        path: "products",
+        element: <ProductsRoot />,
         children: [
           {
             index: true,
-            element: <EventsPage />,
-            loader: EventsLoader,
+            element: <ProductsPage />,
+            loader: ProductsLoader,
           },
           {
             path: ":id",
-            loader: EventDetailLoader,
-            id: "event-detail", //used when you want to run the loader from a child element (useRouteLoader())
+            loader: ProductDetailLoader,
+            id: "product-detail", //used when you want to run the loader from a child element (useRouteLoader())
             children: [
               {
                 index: true,
-                element: <EventDetailPage />,
-                action: EventDetailAction,
+                element: <ProductDetailPage />,
+                action: ProductDetailAction,
               },
               {
                 path: "edit",
-                element: <EditEventPage />,
+                element: <EditProductPage />,
                 action: FormActionHandler,
                 loader: checkAuthLoader,
               },
@@ -55,17 +55,17 @@ const router = createBrowserRouter([
           },
           {
             path: "new",
-            element: <NewEventPage />,
+            element: <NewProductPage />,
             action: FormActionHandler,
             loader: checkAuthLoader,
           },
         ],
       },
-      // {
-      //   path: "auth",
-      //   element: <AuthenticationPage />,
-      //   action: AuthAction,
-      // },
+      {
+        path: "auth",
+        element: <AuthenticationPage />,
+        action: AuthAction,
+      },
       { path: "logout", action: LogoutAction },
     ],
     errorElement: <ErrorPage />,

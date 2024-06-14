@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.outlet {
+  flex: 1;
+  text-align: center;
+}

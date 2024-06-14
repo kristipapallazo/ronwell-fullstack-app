@@ -1,0 +1,4 @@
+.label {
+  color: var(--error-color);
+  text-align: center;
+}

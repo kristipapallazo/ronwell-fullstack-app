@@ -1,0 +1,11 @@
+.invalidInput {
+  background-color: var(--invalid-color);
+}
+.section {
+  margin-bottom: 20px;
+}
+
+.errorLabel {
+  margin-top: 5px;
+  color: var(--error-color);
+}

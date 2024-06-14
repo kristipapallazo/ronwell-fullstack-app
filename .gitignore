@@ -91,4 +91,3 @@ Thumbs.db
 
 config/*.json
 # Don't ignore default.json
-!config/default.json

@@ -38,7 +38,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
         <span className={classes.label}>Inventory:</span>
         <span>{inventory}</span>
       </p>
-      {!token && (
+      {token && (
         <menu className={classes.actions}>
           <Link
             to="edit"

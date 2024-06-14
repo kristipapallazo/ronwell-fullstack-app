@@ -2,7 +2,7 @@ import { sign, verify } from "jsonwebtoken";
 import { compare } from "bcryptjs";
 import { NotAuthError } from "./errors";
 import { CustomReq, Email, Passw, Token } from "../types";
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import config from "config";
 
 const KEY = config.get("jwtKey") as string;

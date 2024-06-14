@@ -1,12 +1,12 @@
 import express, { Request, Response, NextFunction } from "express";
-import { add, get } from "../data/user";
+import { add, get } from "../data/user.ts";
 import { createJSONToken, isValidPassword } from "../util/auth";
-import { isValidEmail, isValidText } from "../util/validation";
+import { isValidText, isValidEmail } from "../util/validation";
 import { ErrorsData } from "../types";
 
-const authRoouter = express.Router();
+const authRouter = express.Router();
 
-authRoouter.post(
+authRouter.post(
   "/signup",
   async (req: Request, res: Response, next: NextFunction) => {
     const data = req.body;
@@ -16,7 +16,7 @@ authRoouter.post(
       if (!data?.email) errors.email = "Email missing.";
       if (!data?.password) errors.password = "Password missing.";
 
-      return res.status(422).json({ message: "User data missing", errors });
+      return res.status(422).json({ message: "User data missing.", errors });
     }
 
     const { email, password } = data;
@@ -57,7 +57,7 @@ authRoouter.post(
   }
 );
 
-authRoouter.post(
+authRouter.post(
   "/login",
   async (req: Request, res: Response, next: NextFunction) => {
     const data = req.body;
@@ -85,7 +85,7 @@ authRoouter.post(
     const pwIsValid = await isValidPassword(password, user.password);
     if (!pwIsValid) {
       return res.status(422).json({
-        message: "Invalid credentials",
+        message: "Invalid credentials.",
       });
     }
 
@@ -93,5 +93,4 @@ authRoouter.post(
     res.json({ token });
   }
 );
-
-module.exports = authRoouter;
+export default authRouter;

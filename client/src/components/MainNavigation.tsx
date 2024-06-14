@@ -53,7 +53,7 @@ function MainNavigation() {
           {token && (
             <li>
               <Form method="post" action="/logout">
-                <button>Logout</button>
+                <button className={classes.logout}>Logout</button>
               </Form>
             </li>
           )}

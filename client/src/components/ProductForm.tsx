@@ -23,13 +23,13 @@ const FORM_ITEMS = [
     type: "textarea",
   },
   {
-    id: "inventory",
-    label: "Inventory",
+    id: "price",
+    label: "Price",
     type: "number",
   },
   {
-    id: "price",
-    label: "Price",
+    id: "inventory",
+    label: "Inventory",
     type: "number",
   },
 ];
@@ -100,11 +100,12 @@ export const action: ActionFunction = async ({ request, params }) => {
   const data = await request.formData();
 
   const body = {
-    title: data.get("title"),
-    image: data.get("image"),
-    date: data.get("date"),
+    name: data.get("name"),
     description: data.get("description"),
+    price: data.get("price"),
+    inventory: data.get("inventory"),
   };
+  console.log("body :>> ", body);
 
   const token = getToken();
   const reqRoute =

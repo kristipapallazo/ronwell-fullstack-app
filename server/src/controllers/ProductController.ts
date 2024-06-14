@@ -25,6 +25,7 @@ export class ProductController {
 
   static save = async (req: Request, res: Response) => {
     const productRepository = AppDataSource.getRepository(Product);
+    console.log("req.body :>> ", req.body);
     const product = productRepository.create(req.body);
     await productRepository.save(product);
     res.send(product);

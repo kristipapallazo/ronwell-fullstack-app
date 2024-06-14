@@ -18,9 +18,19 @@
 .list a {
   text-decoration: none;
   color: var(--color-primary-400);
+  padding: 5px;
 }
 
 .list a:hover,
 .list a.active {
   color: var(--color-primary-800);
+}
+
+.logout {
+  cursor: pointer;
+  padding: 5px;
+}
+.logout:hover {
+  transform: scale(1.2);
+  transition: transform 100ms ease-in-out;
 }

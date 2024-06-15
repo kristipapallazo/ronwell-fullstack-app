@@ -45,6 +45,7 @@ export const sendData = async (
       throw new Response(JSON.stringify({ message, status: 500 }));
     }
     console.log("response :>> ", response);
+    console.log("redirectRoute :>> ", redirectRoute);
     const data = await response.json();
     console.log("data :>> ", data);
     if (data?.token) {
@@ -58,6 +59,8 @@ export const sendData = async (
   } catch (error) {
     const e = error as Error;
     console.log("e :>> ", e);
+    if (redirectRoute) return redirect(redirectRoute);
+
     return null;
   }
 };

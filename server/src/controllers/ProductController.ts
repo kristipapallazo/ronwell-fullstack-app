@@ -54,7 +54,7 @@ export class ProductController {
       await productRepository.delete(id);
       res.status(204).send(JSON.stringify({ ok: true }));
     } catch (error) {
-      res.status(404).send("Product not found");
+      res.status(404).send({ error: true, message: "Product not found" });
     }
   };
 }

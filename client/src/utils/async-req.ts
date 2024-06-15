@@ -30,26 +30,34 @@ export const sendData = async (
   message: string = "Failed to send products.",
   redirectRoute?: string
 ) => {
-  const finalHeader = header || {};
-  const response = await fetch(apiUrl + route, finalHeader);
+  try {
+    const finalHeader = header || {};
+    const response = await fetch(apiUrl + route, finalHeader);
 
-  if (response.status === 422 || response.status === 401) return response;
-  if (!response.ok) {
-    // throw new Response(
-    //   json(
-    //     { message },
-    //     { status: response.status, statusText: response.statusText }
-    //   )
-    // );
-    throw new Response(JSON.stringify({ message, status: 500 }));
+    if (response.status === 422 || response.status === 401) return response;
+    if (!response.ok) {
+      // throw new Response(
+      //   json(
+      //     { message },
+      //     { status: response.status, statusText: response.statusText }
+      //   )
+      // );
+      throw new Response(JSON.stringify({ message, status: 500 }));
+    }
+    console.log("response :>> ", response);
+    const data = await response.json();
+    console.log("data :>> ", data);
+    if (data?.token) {
+      localStorage.setItem("token", data.token);
+      const expiration = new Date();
+      expiration.setHours(expiration.getHours() + 1);
+      localStorage.setItem("expiration", expiration.toISOString());
+    }
+    if (redirectRoute) return redirect(redirectRoute);
+    return null;
+  } catch (error) {
+    const e = error as Error;
+    console.log("e :>> ", e);
+    return null;
   }
-  const data = await response.json();
-  if (data?.token) {
-    localStorage.setItem("token", data.token);
-    const expiration = new Date();
-    expiration.setHours(expiration.getHours() + 1);
-    localStorage.setItem("expiration", expiration.toISOString());
-  }
-  if (redirectRoute) return redirect(redirectRoute);
-  return null;
 };

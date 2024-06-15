@@ -13,7 +13,6 @@ const ErrorPage = () => {
   const title = "An error occured!";
   const message = "Something went wrong.";
 
-  console.log("error :>> ", error);
   // try {
   //   const data = JSON.parse(error.data);
   //   if (data.message) message = data.message;

@@ -15,7 +15,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
   const token: Token =
     tokenRes && typeof tokenRes === "string" ? tokenRes : undefined;
 
-  function startDeleteHandler() {
+  function startDeleteHandler(id: number) {
     const proceed = window.confirm("Are you sure you want to delete?");
 
     if (proceed) {
@@ -48,7 +48,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
             Edit
           </Link>
           <button
-            onClick={() => startDeleteHandler(/* product.id */)}
+            onClick={() => startDeleteHandler(product.id)}
             className={`${classes.btn} ${classes.delete}`}
           >
             Delete

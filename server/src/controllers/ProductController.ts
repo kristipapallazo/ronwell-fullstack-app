@@ -52,7 +52,7 @@ export class ProductController {
     try {
       await productRepository.findOneOrFail({ where: { id: parseInt(id) } });
       await productRepository.delete(id);
-      res.status(204).send();
+      res.status(204).send(JSON.stringify({ ok: true }));
     } catch (error) {
       res.status(404).send("Product not found");
     }

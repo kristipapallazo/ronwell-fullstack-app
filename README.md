@@ -31,3 +31,7 @@ nano ./server/config/default.json
 copy content
 ctrl + V (to paste)
 ctrl + X (to exi)
+
+5. Some api calls need login for the auth
+
+- Create a user with a random email and password

@@ -32,6 +32,10 @@ copy content
 ctrl + V (to paste)
 ctrl + X (to exi)
 
-5. Some api calls need login for the auth
+5. Some api calls need login for the auth(optional)
 
+- This method is optional, to test some API calls that are auth required, bc are conditional rendered by auth token
 - Create a user with a random email and password
+
+6. Run the project(in root folder)
+   npm run dev

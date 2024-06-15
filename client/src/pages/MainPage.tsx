@@ -3,6 +3,7 @@ import MainNavigation from "../components/MainNavigation";
 import classes from "./MainPage.module.css";
 
 const MainPage = () => {
+  console.log("test");
   return (
     <div className={classes.container}>
       <MainNavigation />
